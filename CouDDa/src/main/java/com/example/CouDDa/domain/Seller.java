@@ -1,28 +1,29 @@
 package com.example.CouDDa.domain;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
 import java.time.LocalDateTime;
 
-
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class Seller {
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String name;
+
     private String contactEmail;
+
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
-
-    public Seller(long id, String name, String contactEmail) {
-        this.id = id;
-        this.name = name;
-        this.contactEmail = contactEmail;
-        this.createdAt = LocalDateTime.now();
-    }
-
-    // getters, setters, toString() 등
-    @Override
-    public String toString() {
-        return "Seller{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", createdAt=" + createdAt +
-                '}';
-    }
 }
