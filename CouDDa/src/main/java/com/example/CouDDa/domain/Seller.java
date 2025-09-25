@@ -3,18 +3,18 @@ package com.example.CouDDa.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Seller {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +26,8 @@ public class Seller {
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+    // ⭐ 아래 필드는 양방향 관계를 가질 때만 필요하므로 제거합니다.
+    // @OneToMany(mappedBy = "seller", fetch = FetchType.LAZY)
+    // private List<Product> products;
 }

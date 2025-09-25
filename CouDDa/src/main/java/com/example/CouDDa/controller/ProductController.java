@@ -20,7 +20,6 @@ public class ProductController {
     /**
      * POST /api/products
      * 새로운 상품 등록
-     * 요청 시, 상품 정보와 함께 sellerId, categoryId를 파라미터로 받습니다.
      */
     @PostMapping
     public ResponseEntity<Product> createProduct(@RequestBody Product productDetails,

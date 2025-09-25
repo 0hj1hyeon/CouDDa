@@ -25,6 +25,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	// MySQL 데이터베이스에 연결하기 위한 드라이버
+	runtimeOnly 'com.mysql:mysql-connector-j'
 }
 
 tasks.named('test') {
