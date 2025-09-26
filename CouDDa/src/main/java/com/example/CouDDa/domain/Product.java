@@ -3,14 +3,18 @@ package com.example.CouDDa.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,15 +25,11 @@ public class Product {
     private double price;
     private int stockQuantity;
 
-    // ⭐ sellerId 필드 대신, Seller 객체를 직접 참조하도록 JPA 관계를 매핑합니다.
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seller_id")
-    private Seller seller;
+    @Column(name = "seller_id")
+    private Long sellerId;
 
-    // ⭐ categoryId 필드 대신, Category 객체를 직접 참조하도록 JPA 관계를 매핑합니다.
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @Column(name = "category_id")
+    private Long categoryId;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
