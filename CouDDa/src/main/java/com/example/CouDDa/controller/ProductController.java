@@ -1,6 +1,7 @@
 package com.example.CouDDa.controller;
 
 import com.example.CouDDa.domain.Product;
+import com.example.CouDDa.dto.ProductResponseDto;
 import com.example.CouDDa.service.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +18,6 @@ public class ProductController {
         this.productService = productService;
     }
 
-    /**
-     * POST /api/products
-     * 새로운 상품 등록
-     */
     @PostMapping
     public ResponseEntity<Product> createProduct(@RequestBody Product productDetails,
                                                  @RequestParam Long sellerId,
@@ -29,13 +26,9 @@ public class ProductController {
         return ResponseEntity.ok(newProduct);
     }
 
-    /**
-     * GET /api/products
-     * 모든 상품 목록 조회
-     */
     @GetMapping
-    public ResponseEntity<List<Product>> getAllProducts() {
-        List<Product> products = productService.getAllProducts();
+    public ResponseEntity<List<ProductResponseDto>> getAllProducts() {
+        List<ProductResponseDto> products = productService.getAllProducts();
         return ResponseEntity.ok(products);
     }
 }
