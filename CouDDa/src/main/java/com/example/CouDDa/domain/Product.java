@@ -6,9 +6,12 @@ import lombok.Setter;
 import lombok.ToString;
 
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "products")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,7 +23,7 @@ public class Product {
 
     private String name;
     private String description;
-    private double price;
+    private Integer  price;
     private int stockQuantity;
 
     @ManyToOne(fetch = FetchType.LAZY)
