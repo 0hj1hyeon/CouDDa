@@ -21,13 +21,17 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                // CSRF 비활성화
                 .csrf(csrf -> csrf.disable())
-                // URL별 접근 권한 설정
                 .authorizeHttpRequests(auth -> auth
-                        // 회원 가입, 로그인 모두 접근 허용
-                        .requestMatchers("/api/users/register", "/api/users/login").permitAll()
-                        // 그 외 모든 요청은 로그인해야댐
+                        // 기존 회원가입/로그인 경로에 추가 API 경로들을 포함합니다.
+                        .requestMatchers(
+                                "/api/users/register",
+                                "/api/users/login",
+                                "/api/sellers",       // 판매자 등록/조회 API 허용
+                                "/api/categories",    // 카테고리 등록/조회 API 허용
+                                "/api/products",       // 상품 등록/조회 API 허용
+                                "/api/orders/*"
+                        ).permitAll()
                         .anyRequest().authenticated()
                 );
         return http.build();

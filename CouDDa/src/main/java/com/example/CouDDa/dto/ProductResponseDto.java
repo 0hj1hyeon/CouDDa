@@ -4,13 +4,15 @@ import com.example.CouDDa.domain.Product;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 public class ProductResponseDto {
     private Long id;
     private String name;
     private String description;
-    private double price;
+    private Integer price;
     private int stockQuantity;
     private String sellerName; // 판매자 이름
     private String categoryName; // 카테고리 이름
